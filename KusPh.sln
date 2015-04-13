@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KusPh", "KusPh\KusPh.csproj", "{30E855D5-53D7-436B-8274-F49F3AFA364D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KusPh.Tests", "KusPh.Tests\KusPh.Tests.csproj", "{A2B9D1B3-65E0-457F-88C0-EE3E092C0866}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30E855D5-53D7-436B-8274-F49F3AFA364D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30E855D5-53D7-436B-8274-F49F3AFA364D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30E855D5-53D7-436B-8274-F49F3AFA364D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30E855D5-53D7-436B-8274-F49F3AFA364D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2B9D1B3-65E0-457F-88C0-EE3E092C0866}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2B9D1B3-65E0-457F-88C0-EE3E092C0866}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2B9D1B3-65E0-457F-88C0-EE3E092C0866}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2B9D1B3-65E0-457F-88C0-EE3E092C0866}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
