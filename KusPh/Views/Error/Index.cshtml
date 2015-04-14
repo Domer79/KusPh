@@ -1,0 +1,11 @@
+﻿@model HttpException
+@{
+    ViewBag.Title = "Ошибка!";
+}
+
+<div class="alert alert-danger" role="alert">
+    <h1>Код ошибки: @Model.GetHttpCode()</h1>
+    <div class="container">
+        <p>@Model.Message</p>
+    </div>
+</div>

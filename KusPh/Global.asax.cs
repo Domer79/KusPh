@@ -23,11 +23,12 @@ namespace KusPh
 
             #region Security
 
+            ApplicationCustomizer.Security = Security.Instance;
             ControllerBuilder.Current.SetControllerFactory(new SecurityControllerFactory());
             Security.Instance.SetAccessTypes<SecurityAccessType>();
-            ApplicationCustomizer.Security = Security.Instance;
             ApplicationCustomizer.EnableSecurity = true;
             ApplicationCustomizer.SecurityConnectionString = AdditionalConfiguration.Instance.SecurityConnectionString;
+            ApplicationCustomizer.EnableSecurityAdminPanel = false;
 
             #endregion
         }
