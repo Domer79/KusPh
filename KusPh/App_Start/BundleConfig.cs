@@ -1,17 +1,17 @@
 ﻿using System.Web.Optimization;
 
-namespace TaxOrg
+namespace KusPh
 {
     public class BundleConfig
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/jquery").Include(
+            bundles.Add(new ScriptBundle("~/scripts/jquery").Include(
                 "~/scripts/jquery-2.1.3.min.js",
                 "~/scripts/jquery-ui-1.11.4.min.js"
                 ));
 
-            bundles.Add(new ScriptBundle("~/jqgrid").Include(
+            bundles.Add(new ScriptBundle("~/scripts/jqgrid").Include(
                 "~/scripts/jquery.jqGrid.min.js",
                 "~/scripts/i18n/grid.locale-ru.js"
                 ));
@@ -45,36 +45,36 @@ namespace TaxOrg
             bundles.Add(new StyleBundle("~/Content/themes/smoothness/css").Include(
                 "~/Content/jquery-ui.css",
                 "~/Content/jquery-ui.structure.css",
-                "~/Content/themes/smoothness/jquery-ui.theme.css",
+                "~/Content/themes/smoothness/jquery-ui.smoothness.min.css",
                 "~/Content/jquery.jqGrid/ui.jqgrid.css"
                 ));
 
             bundles.Add(new StyleBundle("~/Content/themes/redmond/css").Include(
                 "~/Content/jquery-ui.css",
                 "~/Content/jquery-ui.structure.css",
-                "~/Content/themes/redmond/jquery-ui.theme.css",
+                "~/Content/themes/redmond/jquery-ui.redmond.min.css",
                 "~/Content/jquery.jqGrid/ui.jqgrid.css"
                 ));
 
             bundles.Add(new StyleBundle("~/Content/themes/ui-lightness/css").Include(
                 "~/Content/jquery-ui.css",
                 "~/Content/jquery-ui.structure.css",
-                "~/Content/themes/ui-lightness/jquery-ui.theme.css",
+                "~/Content/themes/ui-lightness/jquery-ui.ui-lightness.min.css",
                 "~/Content/jquery.jqGrid/ui.jqgrid.css"
                 ));
 
             bundles.Add(new StyleBundle("~/Content/themes/overcast/css").Include(
                 "~/Content/jquery-ui.css",
                 "~/Content/jquery-ui.structure.css",
-                "~/Content/themes/overcast/jquery-ui.overcast.css",
+                "~/Content/themes/overcast/jquery-ui.overcast.min.css",
                 "~/Content/jquery.jqGrid/ui.jqgrid.css"
                 ));
 
             #endregion
 
             bundles.Add(new StyleBundle("~/bootstrap/css").Include(
-                "~/Content/bootstrap-3.3.4-dist/css/bootstrap-theme.css",
-                "~/Content/bootstrap-3.3.4-dist/css/bootstrap.css"
+                "~/Content/bootstrap-theme.min.css",
+                "~/Content/bootstrap.min.css"
                 ));
         }
     }
