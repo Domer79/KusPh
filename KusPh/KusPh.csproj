@@ -619,10 +619,12 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\LogonController.cs" />
     <Compile Include="Controllers\PhController.cs" />
+    <Compile Include="Controllers\SecurityApiController.cs" />
     <Compile Include="Controllers\SecurityController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\PhAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -632,6 +634,9 @@
     <Content Include="Views\Logon\Index.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Security\Index.cshtml" />
+    <Content Include="Views\Shared\_SecurityLayout.cshtml" />
+    <Content Include="Views\Security\Users.cshtml" />
+    <Content Include="Views\Security\Controllers.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -641,9 +646,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Security\DataRepository\DataRepository.csproj">
+      <Project>{daf6e782-54cf-428a-9cec-02a95a35fad2}</Project>
+      <Name>DataRepository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Security\WebSecurity\WebSecurity.csproj">
       <Project>{1268F61D-55E0-4428-83A5-F543C929AC6D}</Project>
       <Name>WebSecurity</Name>
@@ -651,6 +659,10 @@
     <ProjectReference Include="..\..\Taxorg\SystemTools\SystemTools.csproj">
       <Project>{8FB401C3-7285-4F17-A192-41F6CB77FC61}</Project>
       <Name>SystemTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KusPh.Data\KusPh.Data.csproj">
+      <Project>{44b2f0ea-d77f-410b-a57c-9d2b8b173707}</Project>
+      <Name>KusPh.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
