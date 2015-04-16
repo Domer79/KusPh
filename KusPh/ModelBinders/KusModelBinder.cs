@@ -20,28 +20,23 @@ namespace KusPh.ModelBinders
         /// <param name="controllerContext">Контекст контроллера.</param><param name="bindingContext">Контекст привязки.</param>
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
-            try
+            var request = controllerContext.HttpContext.Request;
+            return new Kus
             {
-                var request = controllerContext.HttpContext.Request;
-                return new Kus
-                {
-                    Id = int.Parse(request["Id"] ?? "0"),
-                    ObjectName = request["ObjectName"],
-                    Street = request["Street"],
-                    House = request["House"],
-                    Apartment = request["Apartment"],
-                    TotalArea = TotalAreaParse(request["TotalArea"]),
-                    Floors = int.Parse(request["Floors"] ?? "0"),
-                }
-            }
-            catch (Exception)
-            {
-                
-                throw;
-            }
+                IdKus = int.Parse(request["IdKus"] ?? "0"),
+                ObjectName = request["ObjectName"],
+                Street = request["Street"],
+                House = request["House"],
+                Apartment = request["Apartment"],
+                TotalArea = TotalAreaParse(request["TotalArea"]),
+                Floors = int.Parse(request["Floors"] ?? "0"),
+                RegOperator = request["RegOperator"] == string.Empty ? null : request["RegOperator"],
+                SpecAccount = request["SpecAccount"] == string.Empty ? null : request["SpecAccount"],
+                RegOperatorFund = request["RegOperatorFund"] == string.Empty ? null : request["RegOperatorFund"]
+            };
         }
 
-        private double TotalAreaParse(string totalAreaString)
+        private static double TotalAreaParse(string totalAreaString)
         {
             if (string.IsNullOrEmpty(totalAreaString))
                 return 0;
@@ -53,10 +48,11 @@ namespace KusPh.ModelBinders
             catch
             {
                 var rx = new Regex(@"(?<int>[\d]+)[,.]*(?<float>[\d]*)");
-                if (!rx.Match(totalAreaString).Success)
+                var match = rx.Match(totalAreaString);
+                if (!match.Success)
                     return 0;
 
-
+                return Convert.ToDouble(string.Format("{0},{1}", match.Groups["int"], string.IsNullOrEmpty(match.Groups["float"].Value) ? "0" : match.Groups["float"].Value));
             }
         }
     }

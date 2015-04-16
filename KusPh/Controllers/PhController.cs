@@ -33,6 +33,7 @@ namespace KusPh.Controllers
         {
             try
             {
+                throw new NotImplementedException();
                 _repo.InsertOrUpdate(kus);
                 _repo.SaveChanges();
                 return new HttpStatusCodeResult(HttpStatusCode.OK);

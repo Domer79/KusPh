@@ -11,7 +11,9 @@ using SystemTools.WebTools.Infrastructure;
 using DataRepository.Infrastructure;
 using KusPh.Controllers;
 using KusPh.Data;
+using KusPh.Data.Models;
 using KusPh.Data.Repositories;
+using KusPh.ModelBinders;
 using KusPh.Models;
 using WebSecurity;
 using WebSecurity.Infrastructure;
@@ -29,6 +31,7 @@ namespace KusPh
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ControllerCollection.Assemblies.Add(typeof(PhController).Assembly);
             ApplicationCustomizer.RegisterErrorLog(ErrorLog.SaveError);
+            System.Web.Mvc.ModelBinders.Binders.Add(typeof(Kus), new KusModelBinder());
 
             #region Security
 

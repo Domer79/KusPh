@@ -34,7 +34,7 @@
                 editurl: '@Url.Action("EditKus")',
                 datatype: "json",
                 colModel: [
-                    { name: "id", hidden: true, key: true, editable: true, searchoptions: { sopt: ['eq', 'ne'] } },
+                    { name: "IdKus", index: "IdKus", hidden: true, key: true, editable: true, searchoptions: { sopt: ['eq', 'ne'] } },
                     { name: "ObjectName", label: "Наименование объекта", editable: true, searchoptions: { sopt: ['eq', 'ne'] } },
                     { name: "Street", label: "Адрес", editable: true, searchoptions: { sopt: ['cn', 'eq', 'ne'] } },
                     { name: "House", label: "Дом", editable: true, searchoptions: { sopt: ['cn', 'eq', 'ne'] } },
@@ -66,7 +66,7 @@
                 caption: "@ViewBag.Title",
                 toolbar: [true, "top"],
                 error: function() {
-                    
+
                 }
             });
 
@@ -85,7 +85,12 @@
                     editCaption: "Редактирование записи",
                     closeAfterEdit: true,
                     reloadAfterSubmit: true,
-                    width: 500
+                    width: 500,
+                    ajaxEditOptions: {
+                        error: function (jqXhr, textStatus, errorThrown) {
+                            //TODO: Реализовать!!!
+                        }
+                    }
                 },
                 //Add parameters
                 {
