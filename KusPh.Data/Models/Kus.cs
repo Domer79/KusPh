@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 using DataRepository;
 
 namespace KusPh.Data.Models
@@ -16,7 +13,14 @@ namespace KusPh.Data.Models
         public string Street { get; set; }
         public string House { get; set; }
         public string Apartment { get; set; }
-        public float TotalArea { get; set; }
+        public double TotalArea { get; set; }
         public int Floors { get; set; }
+
+        [NotMapped]
+        public string AreaTotal
+        {
+            get { return TotalArea.ToString(CultureInfo.InvariantCulture); }
+            set { TotalArea = double.Parse(value); }
+        }
     }
 }

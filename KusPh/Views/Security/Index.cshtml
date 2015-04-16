@@ -5,3 +5,72 @@
     Layout = "~/Views/Shared/_SecurityLayout.cshtml";
 }
 
+<div class="container">
+    <h2 class="page-header">Командная строка</h2>
+    <div class="input-group" title="Введите команду">
+        <input id="command" type="text" class="form-control" placeholder="Введите команду" aria-hidden="True"/>
+        <div class="input-group-btn">
+            <button id="eraseCommand" class="btn btn-default">x</button>
+            <button id="cmdGo" class="btn btn-default">Отправить</button>
+        </div>
+    </div>
+    
+    <div class="panel panel-collapse" id="panel">
+        <div class="alert alert-danger fade collapse" role="alert" aria-hidden="true" id="infoPanel">
+            <button type="button" class="close" aria-label="Close" data-toggle="collapse" data-target="#infoPanel" aria-controls="infoPanel" aria-expanded="false">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="panel-body"><span class="text-danger" id="infoMessage">sdfgdfg</span></div>
+        </div>
+    </div>
+</div>
+
+@section FooterScripts 
+{
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#cmdGo").click(function() {
+                $.ajax({
+                    url: '@Url.Action("CmdRun")',
+                    data: { command: $("#command").val() },
+//                    dataType: "JSON",
+                    type: "POST",
+                    cache: false,
+                    async: false,
+                    success: function() {
+                        $("#infoPanel").removeClass("alert-danger");
+                        $("#infoMessage").removeClass("text-danger");
+
+                        $("#infoPanel").addClass("alert-success");
+                        $("#infoMessage").addClass("text-success");
+
+                        $("#infoMessage").text("Команда выполнена успешно");
+                        var timeout = setTimeout(function() {
+                            $("#infoPanel").collapse('hide');
+                        }, 5000);
+                        $("#infoPanel").collapse('show');
+                    },
+                    error: function(jqXhr, textStatus, errorThrown) {
+//                        if (textStatus == "parsererror")
+//                            return;
+
+                        $("#infoMessage").text(errorThrown);
+                        var timeout = setTimeout(function() {
+                            $("#infoPanel").collapse('hide');
+                        }, 5000);
+                        $("#infoPanel").collapse('show');
+                    }
+                });
+            });
+
+            $("#eraseCommand").click(function() {
+                $("#command").val("");
+            });
+
+            $("#command").autocomplete({
+                source: '@Url.Action("Intellisense")',
+                minLength: 0,
+            });
+        });
+    </script>
+}

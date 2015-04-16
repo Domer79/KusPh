@@ -1,10 +1,12 @@
-﻿@model HttpException
+﻿@model Exception
 @{
     ViewBag.Title = "Ошибка!";
+    var isHttpException = Model as HttpException != null;
+    var httpCode = isHttpException ? ((HttpException)Model).GetHttpCode().ToString() : "Отсутствует";
 }
 
 <div class="alert alert-danger" role="alert">
-    <h1>Код ошибки: @Model.GetHttpCode()</h1>
+    <h1>Код ошибки: @httpCode</h1>
     <div class="container">
         <p>@Model.Message</p>
     </div>

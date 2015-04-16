@@ -1,6 +1,119 @@
-﻿
+﻿@using System.Web.Optimization
+
 @{
     ViewBag.Title = "Приватизированное жилье";
 }
 
+<div class="container">
+    <div class="panel panel-collapse" id="panel">
+        <div class="alert alert-danger fade collapse" role="alert" aria-hidden="true" id="infoPanel">
+            <button type="button" class="close" aria-label="Close" data-toggle="collapse" data-target="#infoPanel" aria-controls="infoPanel" aria-expanded="false">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="panel-body"><span class="text-danger" id="infoMessage">sdfgdfg</span></div>
+        </div>
+    </div>
 
+    <table class="table" id="tKus"></table>
+    <div id="kusPage"></div>
+</div>
+
+@section HeaderScripts {
+    @Scripts.Render("~/scripts/jqgrid")
+}
+
+
+@section FooterScripts {
+    
+    <script type="text/javascript">
+        $(document).tooltip();
+
+        $(document).ready(function() {
+            $("#tKus").jqGrid({
+                url: '@Url.Action("GetKus")',
+                editurl: '@Url.Action("EditKus")',
+                datatype: "json",
+                colModel: [
+                    { name: "id", hidden: true, key: true, editable: true, searchoptions: { sopt: ['eq', 'ne'] } },
+                    { name: "ObjectName", label: "Наименование объекта", editable: true, searchoptions: { sopt: ['eq', 'ne'] } },
+                    { name: "Street", label: "Адрес", editable: true, searchoptions: { sopt: ['cn', 'eq', 'ne'] } },
+                    { name: "House", label: "Дом", editable: true, searchoptions: { sopt: ['cn', 'eq', 'ne'] } },
+                    { name: "Apartment", label: "Квартира", editable: true, searchoptions: { sopt: ['cn', 'eq', 'ne'] } },
+                    { name: "TotalArea", label: "Общая площадь", editable: true, searchoptions: { sopt: ['cn', 'eq', 'ne'] } },
+                    { name: "Floors", label: "Этажность", editable: true, searchoptions: { sopt: ['cn', 'eq', 'ne'] } },
+                    { name: "RegOperator", label: "Регионльный оператор", editable: true, searchoptions: { sopt: ['cn', 'eq', 'ne'] } },
+                    { name: "SpecAccount", label: "Специальный счет", editable: true, searchoptions: { sopt: ['cn', 'eq', 'ne'] } },
+                    { name: "RegOperatorFund", label: "Фонд", editable: true, searchoptions: { sopt: ['cn', 'eq', 'ne'] } }
+                ],
+                mtype: 'POST',
+                pager: "#kusPage",
+                rowNum: 30,
+                rowList: [30, 50, 100],
+                shrinkToFit: true,
+                viewrecords: true,
+                footerrow: true,
+                userDataOnFooter: true,
+                jsonReader: {
+                    root: "rows",
+                    page: "page",
+                    total: "totalPages",
+                    records: "records",
+                    repeatitems: false,
+                    userdata: "userdata"
+                },
+                height: "auto",
+                width: "100%",
+                caption: "@ViewBag.Title",
+                toolbar: [true, "top"],
+                error: function() {
+                    
+                }
+            });
+
+            $("#tKus").navGrid("#kusPage", {
+                    edit: true,
+                    add: true,
+                    del: true,
+                    refresh: true,
+                    searchtext: "Поиск",
+                    view: true,
+                    modal: true
+                },
+                //Edit parameters
+                {
+                    id: 'myedit',
+                    editCaption: "Редактирование записи",
+                    closeAfterEdit: true,
+                    reloadAfterSubmit: true,
+                    width: 500
+                },
+                //Add parameters
+                {
+                    id: 'kusAdd',
+                    editCaption: "Добавление записи",
+                    closeAfterEdit: true,
+                    reloadAfterSubmit: true,
+                    width: 500
+                },
+                //Delete parameters
+                {
+                    id: 'mydel',
+                    url: "@Url.Action("Delete")"
+                },
+                //Search parameters
+                {
+                    closeOnEscape: true,
+                    multipleSearch: true,
+                    closeAfterSearch: true
+                },
+                //View parameters
+                {
+                    width: 600
+                }
+            );
+
+        });
+
+    </script>
+
+}

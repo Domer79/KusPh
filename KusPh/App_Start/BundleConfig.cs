@@ -17,7 +17,7 @@ namespace KusPh
                 ));
 
             bundles.Add(new ScriptBundle("~/scripts/bootstrap").Include(
-                    "~/Scripts/bootstrap.min.js"
+                    "~/Scripts/bootstrap.js"
                 ));
 
             #region Темы jQuery-UI

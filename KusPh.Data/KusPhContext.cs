@@ -21,5 +21,6 @@ namespace KusPh.Data
         }
 
         public DbSet<Kus> Kus { get; set; }
+        public DbSet<Error> Error { get; set; }
     }
 }
