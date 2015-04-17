@@ -75,7 +75,6 @@ namespace KusPh.Tests
         public void DoubleToStringTest()
         {
             double v1 = double.Parse("48,1");
-            var v2 = 48.1;
 
             Assert.AreEqual(48,1, v1);
         }

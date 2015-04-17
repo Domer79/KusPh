@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
+using KusPh.Data;
 using KusPh.Data.Models;
 
 namespace KusPh.ModelBinders
@@ -21,19 +22,20 @@ namespace KusPh.ModelBinders
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
             var request = controllerContext.HttpContext.Request;
-            return new Kus
-            {
-                IdKus = int.Parse(request["IdKus"] ?? "0"),
-                ObjectName = request["ObjectName"],
-                Street = request["Street"],
-                House = request["House"],
-                Apartment = request["Apartment"],
-                TotalArea = TotalAreaParse(request["TotalArea"]),
-                Floors = int.Parse(request["Floors"] ?? "0"),
-                RegOperator = request["RegOperator"] == string.Empty ? null : request["RegOperator"],
-                SpecAccount = request["SpecAccount"] == string.Empty ? null : request["SpecAccount"],
-                RegOperatorFund = request["RegOperatorFund"] == string.Empty ? null : request["RegOperatorFund"]
-            };
+            var kus = new Kus();
+            kus.IdKus = int.Parse(string.IsNullOrEmpty(request["IdKus"]) ? "0" : request["IdKus"]);
+            kus.ObjectName = request["ObjectName"];
+            kus.Street = request["Street"];
+            kus.House = request["House"];
+            kus.Apartment = request["Apartment"];
+            kus.TotalArea = TotalAreaParse(request["TotalArea"]);
+            kus.Floors = int.Parse(request["Floors"] ?? "0");
+            kus.RegOperator = request["RegOperator"] == string.Empty ? null : request["RegOperator"];
+            kus.SpecAccount = request["SpecAccount"] == string.Empty ? null : request["SpecAccount"];
+            kus.RegOperatorFund = request["RegOperatorFund"] == string.Empty ? null : request["RegOperatorFund"];
+            kus.Period = Tools.GetCurrentPeriod();
+
+            return kus;
         }
 
         private static double TotalAreaParse(string totalAreaString)

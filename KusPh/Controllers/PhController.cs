@@ -8,6 +8,8 @@ using SystemTools.Extensions;
 using SystemTools.WebTools.Helpers;
 using SystemTools.WebTools.Infrastructure;
 using DataRepository;
+using KusPh.Data;
+using KusPh.Data.Infrastructure;
 using KusPh.Data.Models;
 using KusPh.Data.Repositories;
 using Microsoft.Ajax.Utilities;
@@ -25,7 +27,8 @@ namespace KusPh.Controllers
 
         public ActionResult GetKus(GridSettings grid)
         {
-            var result = ControllerHelper.GetData(grid, _repo.OrderBy(k => k.Street).ThenBy(k => k.House).ThenBy(k => k.Apartment));
+            var period = Tools.GetCurrentPeriod();
+            var result = ControllerHelper.GetData(grid, _repo.OrderBy(k => k.Street).ThenBy(k => k.House).ThenBy(k => k.Apartment).Where(k => k.Period == period));
             return Json(result);
         }
 
@@ -33,7 +36,6 @@ namespace KusPh.Controllers
         {
             try
             {
-                throw new NotImplementedException();
                 _repo.InsertOrUpdate(kus);
                 _repo.SaveChanges();
                 return new HttpStatusCodeResult(HttpStatusCode.OK);

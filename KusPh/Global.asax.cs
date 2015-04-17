@@ -45,13 +45,13 @@ namespace KusPh
             #endregion
         }
 
-//        protected void Application_Error()
-//        {
-//            var exception = Server.GetLastError();
-//            Server.ClearError();
-//            Session["errorObject"] = exception;
-//            ApplicationCustomizer.IsError = true;
-//            Response.RedirectToRoute(new {AdditionalConfiguration.Instance.ErrorPage.Controller, AdditionalConfiguration.Instance.ErrorPage.Action});
-//        }
+        protected void Application_Error()
+        {
+            var exception = Server.GetLastError();
+            Server.ClearError();
+            Session["errorObject"] = exception;
+            ApplicationCustomizer.IsError = true;
+            Response.RedirectToRoute(new {AdditionalConfiguration.Instance.ErrorPage.Controller, AdditionalConfiguration.Instance.ErrorPage.Action});
+        }
     }
 }

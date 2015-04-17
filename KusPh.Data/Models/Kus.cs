@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 using DataRepository;
@@ -19,5 +20,6 @@ namespace KusPh.Data.Models
         public string RegOperator { get; set; }
         public string SpecAccount { get; set; }
         public string RegOperatorFund { get; set; }
+        public DateTime Period { get; set; }
     }
 }
