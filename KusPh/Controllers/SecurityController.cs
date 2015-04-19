@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
@@ -41,7 +40,7 @@ namespace KusPh.Controllers
             if (!commands.All(term.Contains))
                 result = commands.Where(c => c.StartsWith(term ?? string.Empty)).ToArray();
 
-            if (Regex.IsMatch(term, "add"))
+//            if (Regex.IsMatch(term, "add"))
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }

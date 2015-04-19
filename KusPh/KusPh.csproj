@@ -548,6 +548,7 @@
     <Content Include="Content\themes\vader\images\ui-icons_f29a00_256x240.png" />
     <Content Include="Content\themes\vader\jquery-ui.vader.css" />
     <Content Include="Content\themes\vader\jquery-ui.vader.min.css" />
+    <Content Include="Controllers\Синтаксис комманд для системы безопасности.txt" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

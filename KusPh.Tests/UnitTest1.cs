@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.UI.WebControls;
@@ -11,6 +14,7 @@ using KusPh.Data;
 using KusPh.Data.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WebSecurity.Infrastructure;
+using WebSecurity.IntellISense;
 
 namespace KusPh.Tests
 {
@@ -77,6 +81,53 @@ namespace KusPh.Tests
             double v1 = double.Parse("48,1");
 
             Assert.AreEqual(48,1, v1);
+        }
+
+        [TestMethod]
+        public void EndSpaceTest()
+        {
+            const string pattern = @"[^\w]$";
+//            var input = "add" + new string(new []{'\t'});
+            var input = "add" + new string(new []{'\r', '\n'});
+
+            Assert.IsTrue(Regex.IsMatch(input, pattern));
+        }
+
+        [TestMethod]
+        public void GetCommandStringsTest()
+        {
+            var command = "add user Domer ";
+//            var rx = new Regex(@"[^\W]+");
+            var rx = new Regex(@"[^\W]+");
+            var commandStrings = rx.Matches(command);
+
+            var matchStrings = commandStrings.OfType<Match>().Select(m => m.Value).Union(Regex.IsMatch(command, @"[^\w]$") ? new []{""}:new string[]{}).ToArray();
+            CollectionAssert.AreEqual("add,user,Domer,".Split(new []{','}), matchStrings);
+        }
+
+        [TestMethod]
+        public void StartWithTest()
+        {
+            var commands = new[] { "add", "set", "grant", "delete" };
+            const string term = "a";
+
+            var results = commands.Where(c => c.StartsWith(term ?? string.Empty)).ToArray();
+
+            foreach (var result in results)
+            {
+                Debug.WriteLine(result);
+            }
+        }
+
+        [TestMethod]
+        public void CommandTermDispatcherTest()
+        {
+            var commandTermDispatcher = new CommandTermDispatcher("grant exec ");
+
+            foreach (var term in commandTermDispatcher)
+            {
+                Debug.WriteLine(term);
+            }
         }
     }
 
