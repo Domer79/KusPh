@@ -16,6 +16,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WebSecurity;
 using WebSecurity.Infrastructure;
 using WebSecurity.IntellISense;
+using WebSecurity.IntellISense.Grant.Triggers;
 
 namespace KusPh.Tests
 {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using WebSecurity.IntellISense;
+using WebSecurity.IntellISense.Grant.Triggers;
 
 namespace KusPh.Controllers
 {
