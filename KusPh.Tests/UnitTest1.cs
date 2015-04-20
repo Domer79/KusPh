@@ -13,6 +13,7 @@ using KusPh.Controllers;
 using KusPh.Data;
 using KusPh.Data.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using WebSecurity;
 using WebSecurity.Infrastructure;
 using WebSecurity.IntellISense;
 
@@ -27,6 +28,8 @@ namespace KusPh.Tests
         public UnitTest1()
         {
             ApplicationSettings.ConnectionString = "data source=.;initial catalog=KusPh;User Id=developer;Password=sppdeveloper;MultipleActiveResultSets=True;App=EntityFramework";
+            ApplicationSettings.SecurityConnectionString = "data source=.;initial catalog=KusPhSecurity;User Id=developer;Password=sppdeveloper;MultipleActiveResultSets=True;App=EntityFramework";
+            ApplicationCustomizer.Security = Security.Instance;
         }
 
         [TestMethod]
@@ -122,11 +125,29 @@ namespace KusPh.Tests
         [TestMethod]
         public void CommandTermDispatcherTest()
         {
-            var commandTermDispatcher = new CommandTermDispatcher("grant exec ");
+            var commandTermDispatcher = new CommandTermDispatcher<CommandTermMain>("grant select to role2 on [dbo].[Kus]");
 
             foreach (var term in commandTermDispatcher)
             {
                 Debug.WriteLine(term);
+            }
+        }
+
+        [TestMethod]
+        public void StringContainTest()
+        {
+            Assert.IsTrue("[dbo].[Kus]".ToLower().Contains("[dbo].[Kus]".ToLower()));
+        }
+
+        [TestMethod]
+        public void SplitBySpacesTest()
+        {
+            const string pattern = @"\s+";
+            var input = "grant select to role1 on object ";
+
+            foreach (var s in Regex.Split(input, pattern))
+            {
+                Debug.WriteLine(string.Format("Word: \"{0}\"", s));
             }
         }
     }

@@ -21,5 +21,6 @@ namespace KusPh.Data.Models
         public string SpecAccount { get; set; }
         public string RegOperatorFund { get; set; }
         public DateTime Period { get; set; }
+        public int? IdOwner { get; set; }
     }
 }

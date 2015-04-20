@@ -70,6 +70,18 @@
             $("#command").autocomplete({
                 source: '@Url.Action("Intellisense")',
                 minLength: 0,
+                delay: 0,
+                select: function (event, ui) {
+                    var terms = this.value.split(/\s+/);
+                    terms.pop();
+                    terms.push(ui.item.value);
+
+                    this.value = terms.join(" ");
+                    return false;
+                },
+                focus: function() {
+                    return false;
+                }
             });
         });
     </script>

@@ -35,12 +35,12 @@ namespace KusPh
 
             #region Security
 
-//            ApplicationCustomizer.Security = Security.Instance;
-//            ControllerBuilder.Current.SetControllerFactory(new SecurityControllerFactory());
-//            Security.Instance.SetAccessTypes<SecurityAccessType, PhAccess>();
-//            ApplicationCustomizer.EnableSecurity = true;
-//            ApplicationCustomizer.SecurityConnectionString = AdditionalConfiguration.Instance.SecurityConnectionString;
-//            ApplicationCustomizer.EnableSecurityAdminPanel = true;
+            ApplicationCustomizer.Security = Security.Instance;
+            ControllerBuilder.Current.SetControllerFactory(new SecurityControllerFactory());
+            Security.Instance.SetAccessTypes<SecurityAccessType, PhAccess>();
+            ApplicationCustomizer.EnableSecurity = true;
+            ApplicationCustomizer.SecurityConnectionString = AdditionalConfiguration.Instance.SecurityConnectionString;
+            ApplicationCustomizer.EnableSecurityAdminPanel = true;
 
             #endregion
         }

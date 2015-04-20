@@ -4,7 +4,7 @@
     ViewBag.Title = "Приватизированное жилье";
 }
 
-<div class="container">
+<div class="container-fluid">
     <div class="panel panel-collapse" id="panel">
         <div class="alert alert-danger fade collapse" role="alert" aria-hidden="true" id="infoPanel">
             <button type="button" class="close" aria-label="Close" data-toggle="collapse" data-target="#infoPanel" aria-controls="infoPanel" aria-expanded="false">
@@ -37,13 +37,14 @@
                     { name: "IdKus", index: "IdKus", hidden: true, key: true, editable: true, searchoptions: { sopt: ['eq', 'ne'] } },
                     { name: "ObjectName", label: "Наименование объекта", editable: true, searchoptions: { sopt: ['eq', 'ne'] } },
                     { name: "Street", label: "Адрес", editable: true, searchoptions: { sopt: ['cn', 'eq', 'ne'] } },
-                    { name: "House", label: "Дом", editable: true, searchoptions: { sopt: ['cn', 'eq', 'ne'] } },
-                    { name: "Apartment", label: "Квартира", editable: true, searchoptions: { sopt: ['cn', 'eq', 'ne'] } },
-                    { name: "TotalArea", label: "Общая площадь", editable: true, searchoptions: { sopt: ['cn', 'eq', 'ne'] } },
-                    { name: "Floors", label: "Этажность", editable: true, searchoptions: { sopt: ['cn', 'eq', 'ne'] } },
+                    { name: "House", label: "Дом", editable: true, searchoptions: { sopt: ['cn', 'eq', 'ne'] }, width: 60 },
+                    { name: "Apartment", label: "Квартира", editable: true, searchoptions: { sopt: ['cn', 'eq', 'ne'] }, width: 70 },
+                    { name: "TotalArea", label: "Общая площадь", editable: true, searchoptions: { sopt: ['eq', 'ne'] }, width: 100 },
+                    { name: "Floors", label: "Этажность", editable: true, searchoptions: { sopt: ['eq', 'ne'] }, width: 70 },
                     { name: "RegOperator", label: "Регионльный оператор", editable: true, searchoptions: { sopt: ['cn', 'eq', 'ne'] } },
                     { name: "SpecAccount", label: "Специальный счет", editable: true, searchoptions: { sopt: ['cn', 'eq', 'ne'] } },
-                    { name: "RegOperatorFund", label: "Фонд", editable: true, searchoptions: { sopt: ['cn', 'eq', 'ne'] } }
+                    { name: "RegOperatorFund", label: "Фонд", editable: true, searchoptions: { sopt: ['cn', 'eq', 'ne'] } },
+                    { name: "IdOwner", label: "Код владельца", editable: true, searchoptions: { sopt: ['eq', 'ne'] }, width: 100 }
                 ],
                 mtype: 'POST',
                 pager: "#kusPage",

@@ -1,10 +1,9 @@
-﻿using System;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.Mvc;
-using WebSecurity.Infrastructure;
+using WebSecurity.IntellISense;
 
 namespace KusPh.Controllers
 {
@@ -33,15 +32,7 @@ namespace KusPh.Controllers
 
         public ActionResult Intellisense(string term)
         {
-            var commands = new[] {"add", "set", "grant", "delete"};
-            var addCommands = new[] {"user", "group", "role", "secobject"};
-
-            object result = null;
-            if (!commands.All(term.Contains))
-                result = commands.Where(c => c.StartsWith(term ?? string.Empty)).ToArray();
-
-//            if (Regex.IsMatch(term, "add"))
-
+            var result = (IEnumerable<string>)new CommandTermDispatcher<CommandTermMain>(term);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
     }

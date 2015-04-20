@@ -34,6 +34,7 @@ namespace KusPh.ModelBinders
             kus.SpecAccount = request["SpecAccount"] == string.Empty ? null : request["SpecAccount"];
             kus.RegOperatorFund = request["RegOperatorFund"] == string.Empty ? null : request["RegOperatorFund"];
             kus.Period = Tools.GetCurrentPeriod();
+            kus.IdOwner = string.IsNullOrEmpty(request["IdOwner"]) ? (int?) null : int.Parse(request["IdOwner"]);
 
             return kus;
         }
