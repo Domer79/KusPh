@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using IntellISenseSecurity;
 using WebSecurity.IntellISense;
-using WebSecurity.IntellISense.Grant.Triggers;
 
 namespace KusPh.Controllers
 {

@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using SystemTools;
 using SystemTools.Extensions;
 using DataRepository.Infrastructure;
+using IntellISenseSecurity;
 using KusPh.Controllers;
 using KusPh.Data;
 using KusPh.Data.Models;
@@ -16,7 +17,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WebSecurity;
 using WebSecurity.Infrastructure;
 using WebSecurity.IntellISense;
-using WebSecurity.IntellISense.Grant.Triggers;
 
 namespace KusPh.Tests
 {

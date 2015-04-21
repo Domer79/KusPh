@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemTools", "..\Taxorg\Sy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KusPh.Data", "KusPh.Data\KusPh.Data.csproj", "{44B2F0EA-D77F-410B-A57C-9D2B8B173707}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntellISenseSecurity", "..\Security\IntellISenseSecurity\IntellISenseSecurity.csproj", "{33AAD3C3-EC2E-4984-B96E-E0935D1C926F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{44B2F0EA-D77F-410B-A57C-9D2B8B173707}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44B2F0EA-D77F-410B-A57C-9D2B8B173707}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44B2F0EA-D77F-410B-A57C-9D2B8B173707}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33AAD3C3-EC2E-4984-B96E-E0935D1C926F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33AAD3C3-EC2E-4984-B96E-E0935D1C926F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33AAD3C3-EC2E-4984-B96E-E0935D1C926F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33AAD3C3-EC2E-4984-B96E-E0935D1C926F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

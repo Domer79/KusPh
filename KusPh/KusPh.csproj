@@ -657,6 +657,10 @@
       <Project>{daf6e782-54cf-428a-9cec-02a95a35fad2}</Project>
       <Name>DataRepository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Security\IntellISenseSecurity\IntellISenseSecurity.csproj">
+      <Project>{33AAD3C3-EC2E-4984-B96E-E0935D1C926F}</Project>
+      <Name>IntellISenseSecurity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Security\WebSecurity\WebSecurity.csproj">
       <Project>{1268F61D-55E0-4428-83A5-F543C929AC6D}</Project>
       <Name>WebSecurity</Name>
