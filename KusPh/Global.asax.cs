@@ -35,7 +35,6 @@ namespace KusPh
 
             #region Security
 
-            ApplicationCustomizer.Security = Security.Instance;
             ControllerBuilder.Current.SetControllerFactory(new SecurityControllerFactory());
             Security.Instance.SetAccessTypes<SecurityAccessType, PhAccess>();
             ApplicationCustomizer.EnableSecurity = true;
@@ -43,6 +42,16 @@ namespace KusPh
             ApplicationCustomizer.EnableSecurityAdminPanel = true;
 
             #endregion
+        }
+
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+            ApplicationCustomizer.Security = Security.Instance;
+        }
+
+        protected void Application_EndRequest(object sender, EventArgs e)
+        {
+            ((IDisposable)ApplicationCustomizer.Security).Dispose();
         }
 
         protected void Application_Error()

@@ -34,7 +34,7 @@ namespace KusPh.Data.Repositories
 
         public string GetLastError()
         {
-            return this.Last().Message;
+            return Set.OrderByDescending(e => e.TimeLabel).First().Message;
         }
 
         private ErrorRepository()
