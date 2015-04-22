@@ -75,5 +75,20 @@
             @RenderBody() 
         </div>
         @RenderSection("FooterScripts", false)
+        
+        <nav class="navbar navbar-default navbar-fixed-bottom">
+            <div class="container">
+                
+                <div class="panel panel-collapse" id="panel">
+                    <div class="alert alert-danger fade collapse" role="alert" aria-hidden="true" id="infoPanel">
+                        <button type="button" class="close" aria-label="Close" data-toggle="collapse" data-target="#infoPanel" aria-controls="infoPanel" aria-expanded="false">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="panel-body"><span class="text-danger" id="infoMessage">sdfgdfg</span></div>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
     </body>
 </html>

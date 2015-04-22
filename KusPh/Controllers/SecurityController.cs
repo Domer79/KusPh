@@ -1,9 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using System.Web.Services.Description;
+using SystemTools.Extensions;
 using IntellISenseSecurity;
+using WebSecurity.CmdRun;
 using WebSecurity.IntellISense;
 
 namespace KusPh.Controllers
@@ -28,7 +32,20 @@ namespace KusPh.Controllers
 
         public ActionResult CmdRun(string command)
         {
-            return new HttpStatusCodeResult(HttpStatusCode.OK);
+            try
+            {
+                var termDispatcher = new CommandTermDispatcher<CommandTermMain>(command);
+                var runDispatcher = new CommandRunDispatcher(new SecurityCommandRun());
+                runDispatcher.Run(termDispatcher.Stack);
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            catch (Exception e)
+            {
+                const int messageStringCount = 500;
+                e.SaveError();
+                var errorMessage = e.GetErrorMessage();
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, errorMessage.Length > messageStringCount ? errorMessage.Substring(0, messageStringCount) : e.Message);
+            }
         }
 
         public ActionResult Intellisense(string term)

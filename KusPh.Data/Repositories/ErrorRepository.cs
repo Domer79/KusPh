@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Linq;
 using SystemTools.Extensions;
 using DataRepository;
 using KusPh.Data.Models;
@@ -29,6 +30,11 @@ namespace KusPh.Data.Repositories
 
             Set.Add(error);
             SaveChanges();
+        }
+
+        public string GetLastError()
+        {
+            return this.Last().Message;
         }
 
         private ErrorRepository()

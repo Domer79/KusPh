@@ -15,52 +15,84 @@
         </div>
     </div>
     
-    <div class="panel panel-collapse" id="panel">
-        <div class="alert alert-danger fade collapse" role="alert" aria-hidden="true" id="infoPanel">
-            <button type="button" class="close" aria-label="Close" data-toggle="collapse" data-target="#infoPanel" aria-controls="infoPanel" aria-expanded="false">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <div class="panel-body"><span class="text-danger" id="infoMessage">sdfgdfg</span></div>
-        </div>
-    </div>
+@*    <div class="panel panel-collapse" id="panel">*@
+@*        <div class="alert alert-danger fade collapse" role="alert" aria-hidden="true" id="infoPanel">*@
+@*            <button type="button" class="close" aria-label="Close" data-toggle="collapse" data-target="#infoPanel" aria-controls="infoPanel" aria-expanded="false">*@
+@*                <span aria-hidden="true">&times;</span>*@
+@*            </button>*@
+@*            <div class="panel-body"><span class="text-danger" id="infoMessage">sdfgdfg</span></div>*@
+@*        </div>*@
+@*    </div>*@
 </div>
 
 @section FooterScripts 
 {
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#cmdGo").click(function() {
+            var getLastServerError = function () {
+                var lastError;
+                $.ajax({
+                    url: 'api/SecurityApi/GetLastError',
+                    type: "POST",
+                    async: true,
+                    cache: false,
+                    success: function(data) {
+                        lastError = data;
+                    }
+                });
+            };
+
+            var commandSend = function(command) {
                 $.ajax({
                     url: '@Url.Action("CmdRun")',
-                    data: { command: $("#command").val() },
-//                    dataType: "JSON",
+                    data: { command: command },
+                    //                    dataType: "JSON",
                     type: "POST",
                     cache: false,
                     async: false,
-                    success: function() {
+                    success: function () {
+                        //Удаляем классы ошибки
                         $("#infoPanel").removeClass("alert-danger");
                         $("#infoMessage").removeClass("text-danger");
 
+                        //Добавляем классы успешного выполнения
                         $("#infoPanel").addClass("alert-success");
                         $("#infoMessage").addClass("text-success");
 
+                        //Выводим текст об успешном выполнении
                         $("#infoMessage").text("Команда выполнена успешно");
+
+                        //Скрываем панель сообщения через 5 секунд
                         var timeout = setTimeout(function() {
                             $("#infoPanel").collapse('hide');
                         }, 5000);
+
+                        //Открываем панель сообщения
                         $("#infoPanel").collapse('show');
+
+                        //Удаляем текст команды
+                        $("#command").val("");
                     },
                     error: function(jqXhr, textStatus, errorThrown) {
-//                        if (textStatus == "parsererror")
-//                            return;
+                        //                        if (textStatus == "parsererror")
+                        //                            return;
 
-                        $("#infoMessage").text(errorThrown);
-                        var timeout = setTimeout(function() {
-                            $("#infoPanel").collapse('hide');
-                        }, 5000);
+                        $("#infoMessage").text(getLastServerError());
+//                        var timeout = setTimeout(function() {
+//                            $("#infoPanel").collapse('hide');
+//                        }, 5000);
                         $("#infoPanel").collapse('show');
                     }
                 });
+            };
+
+            $("#command").keypress(function(event) {
+                if (event.which == 13)
+                    commandSend($("#command").val());
+            });
+
+            $("#cmdGo").click(function() {
+                commandSend($("#command").val());
             });
 
             $("#eraseCommand").click(function() {
@@ -71,7 +103,7 @@
                 source: '@Url.Action("Intellisense")',
                 minLength: 0,
                 delay: 0,
-                select: function (event, ui) {
+                select: function(event, ui) {
                     var terms = this.value.split(/\s+/);
                     terms.pop();
                     terms.push(ui.item.value);

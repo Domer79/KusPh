@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using KusPh.Data.Infrastructure;
+using KusPh.Data.Repositories;
 
 namespace KusPh.Data
 {
@@ -12,6 +13,11 @@ namespace KusPh.Data
         public static DateTime GetCurrentPeriod()
         {
             return ScalarFunctions.GetCurrentPeriod();
+        }
+
+        public static string GetLastError()
+        {
+            return ErrorRepository.Errors.GetLastError();
         }
     }
 }
