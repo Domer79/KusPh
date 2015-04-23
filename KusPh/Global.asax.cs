@@ -25,16 +25,18 @@ namespace KusPh
         private void Application_Start(object sender, EventArgs e)
         {
             // Код, выполняемый при запуске приложения
-            AreaRegistration.RegisterAllAreas();
+//            AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ControllerCollection.Assemblies.Add(typeof(PhController).Assembly);
             ApplicationCustomizer.RegisterErrorLog(ErrorLog.SaveError);
+            ApplicationCustomizer.ApplicationType = ApplicationType.Web;
             System.Web.Mvc.ModelBinders.Binders.Add(typeof(Kus), new KusModelBinder());
 
             #region Security
 
+            ApplicationCustomizer.Security = Security.Instance;
             ControllerBuilder.Current.SetControllerFactory(new SecurityControllerFactory());
             Security.Instance.SetAccessTypes<SecurityAccessType, PhAccess>();
             ApplicationCustomizer.EnableSecurity = true;
@@ -46,12 +48,11 @@ namespace KusPh
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-            ApplicationCustomizer.Security = Security.Instance;
+            Security.RenewContext();
         }
 
         protected void Application_EndRequest(object sender, EventArgs e)
         {
-            ((IDisposable)ApplicationCustomizer.Security).Dispose();
         }
 
         protected void Application_Error()

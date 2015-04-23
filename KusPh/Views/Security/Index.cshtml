@@ -29,7 +29,7 @@
 {
     <script type="text/javascript">
         $(document).ready(function() {
-            var getLastServerError = function () {
+            var getLastServerError = function() {
                 var lastError = "Извините произошла какая-то ошибка, а какая узнать не удалось!";
                 $.ajax({
                     url: '@HttpRuntime.AppDomainAppVirtualPath' + 'api/SecurityApi/PostLastError',
@@ -53,7 +53,7 @@
                     type: "POST",
                     cache: false,
                     async: false,
-                    success: function () {
+                    success: function() {
                         //Удаляем классы ошибки
                         $("#infoPanel").removeClass("alert-danger");
                         $("#infoMessage").removeClass("text-danger");
@@ -79,11 +79,17 @@
                     error: function(jqXhr, textStatus, errorThrown) {
                         //                        if (textStatus == "parsererror")
                         //                            return;
+                        $("#infoPanel").removeClass("alert-success");
+                        $("#infoMessage").removeClass("text-success");
+
+                        //Добавляем классы успешного выполнения
+                        $("#infoPanel").addClass("alert-danger");
+                        $("#infoMessage").addClass("text-danger");
 
                         $("#infoMessage").text(getLastServerError());
-//                        var timeout = setTimeout(function() {
-//                            $("#infoPanel").collapse('hide');
-//                        }, 5000);
+                        //                        var timeout = setTimeout(function() {
+                        //                            $("#infoPanel").collapse('hide');
+                        //                        }, 5000);
                         $("#infoPanel").collapse('show');
                     }
                 });
@@ -103,7 +109,18 @@
             });
 
             $("#command").autocomplete({
-                source: '@Url.Action("Intellisense")',
+                //                source: '@Url.Action("Intellisense")',
+                source: function (request, response) {
+                    $.ajax({
+                        url: '@Url.Action("Intellisense")',
+                        cache: false,
+                        async: true,
+                        data: { term: request.term },
+                        success: function(data) {
+                            response(data);
+                        }
+                    });
+                },
                 minLength: 0,
                 delay: 0,
                 select: function(event, ui) {
