@@ -157,6 +157,25 @@ namespace KusPh.Tests
         {
             var context = new KusPhContext();
         }
+
+        [TestMethod]
+        public void LogicalOrTest()
+        {
+            var testType = TestType.Module;
+            Debug.WriteLine(testType);
+            
+            testType |= TestType.Load;
+            Debug.WriteLine(testType.ToString());
+        }
+    }
+
+    [Flags]
+    public enum TestType
+    {
+        None = 0,
+        Module = 1,
+        Load = 2,
+        UiTest = 4
     }
 
     public class SimpleClass : IController
