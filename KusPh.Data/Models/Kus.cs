@@ -2,10 +2,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
+using SystemTools.WebTools.Attributes;
 using DataRepository;
 
 namespace KusPh.Data.Models
 {
+    [EntityAlias("KusData", "Информация по жилью по данным из КУСа")]
     public class Kus : ModelBase
     {
         [Key]

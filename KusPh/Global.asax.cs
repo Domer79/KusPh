@@ -33,6 +33,7 @@ namespace KusPh
             ApplicationCustomizer.RegisterErrorLog(ErrorLog.SaveError);
             ApplicationCustomizer.ApplicationType = ApplicationType.Web;
             System.Web.Mvc.ModelBinders.Binders.Add(typeof(Kus), new KusModelBinder());
+            ContextInfo.ContextInfoCollection.Add(typeof(KusPhContext));
 
             #region Security
 

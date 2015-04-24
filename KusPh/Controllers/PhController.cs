@@ -22,13 +22,13 @@ namespace KusPh.Controllers
         readonly KusRepository _repo = new KusRepository();
 
         // GET: Ph
-        [ActionAlias("PhIndex")]
+        [ActionAlias("PhIndex", "Главная страница приложения")]
         public ActionResult Index()
         {
             return View();
         }
 
-        [ActionAlias("KusDataReturn")]
+        [ActionAlias("KusDataReturn", "Возвращает на страницу табличные данные по жилью.")]
         public ActionResult GetKus(GridSettings grid)
         {
             var period = Tools.GetCurrentPeriod();

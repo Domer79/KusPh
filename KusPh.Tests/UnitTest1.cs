@@ -65,15 +65,15 @@ namespace KusPh.Tests
         [TestMethod]
         public void GetTableNameTest()
         {
-            var contextInfo = new ContextInfo(new KusPhContext());
-            Assert.AreEqual("[dbo].[kus]", contextInfo.GetTableName(typeof (Kus)).ToLower());
+            var kusPhContext = new KusPhContext();
+            Assert.AreEqual("[dbo].[kus]", kusPhContext.GetTableName(typeof (Kus)).ToLower());
         }
 
         [TestMethod]
         public void GetTableNamesTest()
         {
-            var contextInfo = new ContextInfo(new KusPhContext());
-            foreach (var tableName in contextInfo.GetTableNames())
+            var context = new KusPhContext();
+            foreach (var tableName in context.GetTableNames())
             {
                 Debug.WriteLine(tableName);
             }
