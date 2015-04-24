@@ -151,6 +151,12 @@ namespace KusPh.Tests
                 Debug.WriteLine(string.Format("Word: \"{0}\"", s));
             }
         }
+
+        [TestMethod]
+        public void RepositoryDataContextTest()
+        {
+            var context = new KusPhContext();
+        }
     }
 
     public class SimpleClass : IController

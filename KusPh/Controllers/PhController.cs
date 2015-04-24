@@ -5,6 +5,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SystemTools.Extensions;
+using SystemTools.WebTools.Attributes;
 using SystemTools.WebTools.Helpers;
 using SystemTools.WebTools.Infrastructure;
 using DataRepository;
@@ -19,12 +20,15 @@ namespace KusPh.Controllers
     public class PhController : Controller
     {
         readonly KusRepository _repo = new KusRepository();
+
         // GET: Ph
+        [ActionAlias("PhIndex")]
         public ActionResult Index()
         {
             return View();
         }
 
+        [ActionAlias("KusDataReturn")]
         public ActionResult GetKus(GridSettings grid)
         {
             var period = Tools.GetCurrentPeriod();
