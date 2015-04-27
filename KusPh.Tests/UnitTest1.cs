@@ -168,6 +168,13 @@ namespace KusPh.Tests
             testType |= TestType.Load;
             Debug.WriteLine(testType.ToString());
         }
+
+        [TestMethod]
+        public void AppNameTest()
+        {
+            var appName = ApplicationSettings.ApplicationName;
+            Debug.WriteLine(appName);
+        }
     }
 
     [Flags]

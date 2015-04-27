@@ -1,4 +1,5 @@
-﻿@model dynamic
+﻿@using SystemTools
+@model dynamic
 
 @{
     ViewBag.Title = "Настройка безопасности";
@@ -31,9 +32,9 @@
         $(document).ready(function() {
             var getLastServerError = function() {
                 var lastError = "Извините произошла какая-то ошибка, а какая узнать не удалось!";
+                var uri = '@ApplicationSettings.ApplicationVirtualPath' + 'api/SecurityApi/PostLastError';
                 $.ajax({
-                    url: '@HttpRuntime.AppDomainAppVirtualPath' + 'api/SecurityApi/PostLastError',
-
+                    url: uri,
                     type: "POST",
                     async: false,
                     cache: false,
@@ -136,5 +137,5 @@
                 }
             });
         });
-    </script>
+</script>
 }
