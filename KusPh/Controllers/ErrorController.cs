@@ -11,6 +11,7 @@ namespace KusPh.Controllers
         // GET: Error
         public ActionResult Index()
         {
+            var context = HttpContext;
             var error = (Exception)Session["errorObject"];
             return View(error);
         }

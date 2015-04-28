@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Http;
+using System.Web.Security;
 using SystemTools;
 using SystemTools.ConfigSections;
 using SystemTools.WebTools.Infrastructure;
@@ -47,6 +48,11 @@ namespace KusPh
             #endregion
         }
 
+        protected void Application_Init(object sender, EventArgs e)
+        {
+            
+        }
+
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
             Security.RenewContext();
@@ -54,6 +60,11 @@ namespace KusPh
 
         protected void Application_EndRequest(object sender, EventArgs e)
         {
+        }
+
+        private void WindowsAuthentication_OnAuthenticate(object sender, WindowsAuthenticationEventArgs args)
+        {
+
         }
 
         protected void Application_Error()
