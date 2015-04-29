@@ -42,7 +42,7 @@ namespace KusPh
             ControllerBuilder.Current.SetControllerFactory(new SecurityControllerFactory());
             Security.Instance.SetAccessTypes<SecurityAccessType, PhAccess>();
             ApplicationCustomizer.EnableSecurity = true;
-            ApplicationCustomizer.SecurityConnectionString = AdditionalConfiguration.Instance.SecurityConnectionString;
+            ApplicationCustomizer.SecurityConnectionString = ApplicationSettings.SecurityConnectionString;
             ApplicationCustomizer.EnableSecurityAdminPanel = true;
 
             #endregion
